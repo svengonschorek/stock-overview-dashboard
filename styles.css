@@ -1,0 +1,17 @@
+
+[data-testid="stSidebar"] {
+    min-width: 20vw;
+    max-width: 20vw;
+    width: 20vw;
+}
+
+[data-testid="stSidebarCollapseButton"] {
+    display: none;
+}
+
+[data-testid="stMainBlockContainer"] {
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
