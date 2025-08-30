@@ -4,7 +4,7 @@ from components.chart_candlestick import load_candlestick
 from components.main_sidebar import sidebar_company_info
 from components.financials_waterfall import load_waterfall
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="Company Analysis Dashboard")
 
 # load custom CSS
 with open("styles.css") as f:
