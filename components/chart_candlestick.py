@@ -1,12 +1,12 @@
-from streamlit_lightweight_charts import renderLightweightCharts
-from st_screen_stats import ScreenData
-
 import json
 import numpy as np
 import yfinance as yf
 
-COLOR_BULL = 'rgba(38,166,154,0.9)' # #26a69a
-COLOR_BEAR = 'rgba(239,83,80,0.9)'  # #ef5350
+from streamlit_lightweight_charts import renderLightweightCharts
+from st_screen_stats import ScreenData
+
+COLOR_BULL = 'rgba(38,166,154,0.9)' #26a69a
+COLOR_BEAR = 'rgba(239,83,80,0.9)'  #ef5350
 
 # function to load candlestick chart
 def load_candlestick(symbol):
