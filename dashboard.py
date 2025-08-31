@@ -3,6 +3,7 @@ import streamlit as st
 from components.chart_candlestick import load_candlestick
 from components.main_sidebar import sidebar_company_info
 from components.financials_waterfall import load_waterfall
+from components.financials_metrics import display_financial_metrics
 
 st.set_page_config(layout="wide", page_title="Company Analysis Dashboard")
 
@@ -24,3 +25,4 @@ with chart_tab:
 with financial_tab:
     st.session_state.waterfall_chart = load_waterfall(symbol)
     st.write(st.session_state.waterfall_chart)
+    display_financial_metrics(symbol)
