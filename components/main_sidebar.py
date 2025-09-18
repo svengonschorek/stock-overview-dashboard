@@ -1,14 +1,21 @@
 import streamlit as st
 import yfinance as yf
-from datetime import datetime
 
+@st.dialog("Company Info")
+def company_info_popup(summary):
+    st.write("### Business Summary")
+    st.write(summary)
+    
 def sidebar_company_info(symbol):
     data = yf.Ticker(symbol)
     st.sidebar.title(data.info['longName'])
     st.sidebar.subheader(f"{data.info['fullExchangeName']}: {data.info['symbol']}")
     st.sidebar.write(data.info['website'])
     st.sidebar.write(data.info['sector'], ', ', data.info['industry'])
-    st.sidebar.subheader("Most recent quarter")
-    st.sidebar.write(datetime.fromtimestamp(data.info['mostRecentQuarter']).strftime('%Y-%m-%d %H:%M:%S'))
-    st.sidebar.subheader("Next Earnings Call")
-    st.sidebar.write(datetime.fromtimestamp(data.info['earningsTimestampStart']).strftime('%Y-%m-%d %H:%M:%S'))
+
+    st.sidebar.subheader("Summary")
+    summary = data.info['longBusinessSummary']
+    short_summary = summary[:220] + "..." if len(summary) > 220 else summary
+    st.sidebar.write(short_summary)
+
+    st.sidebar.button("More Info", on_click=lambda: company_info_popup(summary))

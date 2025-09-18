@@ -10,8 +10,14 @@
 }
 
 [data-testid="stMainBlockContainer"] {
-    padding-top: 2rem;
+    padding-top: 3rem;
     padding-bottom: 5rem;
     padding-left: 5rem;
     padding-right: 5rem;
+}
+
+[data-testid="stDialog"] > div > div {
+    min-width: 600px !important;
+    max-width: 900px !important;
+    width: 70vw !important;
 }
