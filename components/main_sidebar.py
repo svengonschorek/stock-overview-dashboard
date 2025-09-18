@@ -1,7 +1,7 @@
 import streamlit as st
 import yfinance as yf
 
-@st.dialog("Company Info")
+@st.dialog("Company Info", width='large')
 def company_info_popup(summary):
     st.write("### Business Summary")
     st.write(summary)

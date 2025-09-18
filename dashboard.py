@@ -13,7 +13,7 @@ with open("styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Stock list popup
-@st.dialog("Stocks List")
+@st.dialog("Stocks List", width='large')
 def stocks_list_popup():
     stocks_list()
 

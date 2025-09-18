@@ -15,9 +15,3 @@
     padding-left: 5rem;
     padding-right: 5rem;
 }
-
-[data-testid="stDialog"] > div > div {
-    min-width: 600px !important;
-    max-width: 900px !important;
-    width: 70vw !important;
-}
