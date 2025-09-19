@@ -3,7 +3,7 @@ import yfinance as yf
 
 @st.dialog("Company Info", width='large')
 def company_info_popup(summary):
-    st.write("### Business Summary")
+    st.header("Business Summary")
     st.write(summary)
     
 def sidebar_company_info(symbol):
