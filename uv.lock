@@ -869,6 +869,7 @@ dependencies = [
     { name = "streamlit-lightweight-charts" },
     { name = "streamlit-local-storage" },
     { name = "streamlit-screen-stats" },
+    { name = "tabulate" },
     { name = "yfinance" },
 ]
 
@@ -881,6 +882,7 @@ requires-dist = [
     { name = "streamlit-lightweight-charts", specifier = ">=0.7.20" },
     { name = "streamlit-local-storage", specifier = ">=0.0.25" },
     { name = "streamlit-screen-stats", specifier = ">=0.0.82" },
+    { name = "tabulate", specifier = ">=0.9.0" },
     { name = "yfinance", specifier = ">=0.2.65" },
 ]
 
@@ -959,6 +961,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a9/34/9ade81306ed555c7acc84335604b60e12580a747f185012b565813d8568f/streamlit_screen_stats-0.0.82.tar.gz", hash = "sha256:4afffabab17f6e10f91c944ab4edbc8c53b3d6319f13b77c19b8210b76b963d7", size = 1063977, upload-time = "2025-01-03T02:19:25.897Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/66/53/42d8fbeec8f170fbcf6c8d355ca4f607beb211e07c0632d03111d4dc4eca/streamlit_screen_stats-0.0.82-py3-none-any.whl", hash = "sha256:040262a635bd6c4d342618c5110b7c93f186be61bc90717501282fe95cdc0075", size = 1076533, upload-time = "2025-01-03T02:19:22.126Z" },
+]
+
+[[package]]
+name = "tabulate"
+version = "0.9.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ec/fe/802052aecb21e3797b8f7902564ab6ea0d60ff8ca23952079064155d1ae1/tabulate-0.9.0.tar.gz", hash = "sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c", size = 81090, upload-time = "2022-10-06T17:21:48.54Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl", hash = "sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f", size = 35252, upload-time = "2022-10-06T17:21:44.262Z" },
 ]
 
 [[package]]

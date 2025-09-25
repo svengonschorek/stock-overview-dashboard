@@ -24,8 +24,14 @@ with button_col1:
 with button_col2:
     st.button("Watchlist")
 
-# Sidebar
-symbol = st.sidebar.text_input("Symbol", "AAPL").upper()
+# Sidebar with default symbol from query parameter
+query_symbol = None
+if hasattr(st, "query_params"):
+    query_symbol = st.query_params.get("symbol", None)
+
+default_symbol = query_symbol.upper() if query_symbol else "AAPL"
+
+symbol = st.sidebar.text_input("Symbol", default_symbol).upper()
 sidebar_company_info(symbol)
 
 # Tabs
