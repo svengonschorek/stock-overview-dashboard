@@ -17,14 +17,25 @@ def stocks_list():
         sector_stocks = stocks_df[stocks_df['sector'] == sector]
         if not sector_stocks.empty:
             st.header(sector)
-            st.dataframe(
-                sector_stocks[['rank', 'name', 'symbol', 'country', 'industry']].reset_index(drop=True).rename(columns={
-                    'rank': 'Rank',
-                    'name': 'Name',
-                    'symbol': 'Symbol',
-                    'country': 'Country',
-                    'industry': 'Industry',
-                }),
+            df = sector_stocks[['rank', 'name', 'symbol', 'country', 'industry']].reset_index(drop=True).rename(columns={
+                'rank': 'Rank',
+                'name': 'Name',
+                'symbol': 'Symbol',
+                'country': 'Country',
+                'industry': 'Industry',
+            })
+            # Create a column with the link URL
+            df['Symbol Link'] = df['Symbol'].apply(lambda x: f"?symbol={x}")
+            st.data_editor(
+                df,
                 use_container_width=True,
-                hide_index=True
+                hide_index=True,
+                column_config={
+                    "Symbol Link": st.column_config.LinkColumn(
+                        label="",
+                        display_text="→",
+                        width=10,
+                    ),
+                },
+                disabled=["Symbol Link"],
             )
