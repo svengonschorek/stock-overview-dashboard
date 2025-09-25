@@ -1,29 +1,30 @@
 import streamlit as st
+import pandas as pd
+
+def get_stocks_data():
+    path = 'data/stocks.csv'
+    df = pd.read_csv(path)
+    return df
 
 def stocks_list():
     st.title("All Stocks by Sector")
     st.subheader("A comprehensive list of stocks categorized by sector.")
-    st.header("Technology")
-    st.write("All Tech stocks listed here...")
-    st.header("Communication Services")
-    st.write("All Communication Services stocks listed here...")
-    st.header("Healthcare")
-    st.write("All Healthcare stocks listed here...")
-    st.header("Financial Services")
-    st.write("All Financial Services stocks listed here...")
-    st.header("Energy")
-    st.write("All Energy stocks listed here...")
-    st.header("Consumer Cyclical")
-    st.write("All Consumer Cyclical stocks listed here...")
-    st.header("Consumer Defensive")
-    st.write("All Consumer Defensive stocks listed here...")
-    st.header("Industrials")
-    st.write("All Industrials stocks listed here...")
-    st.header("Utilities")
-    st.write("All Utilities stocks listed here...")
-    st.header("Real Estate")
-    st.write("All Real Estate stocks listed here...")
-    st.header("Basic Materials")
-    st.write("All Basic Materials stocks listed here...")
-    st.header("Other")
-    st.write("All other stocks listed here...")
+
+    stocks_df = get_stocks_data()
+
+    sectors = stocks_df['sector'].unique()
+    for sector in sectors:
+        sector_stocks = stocks_df[stocks_df['sector'] == sector]
+        if not sector_stocks.empty:
+            st.header(sector)
+            st.dataframe(
+                sector_stocks[['rank', 'name', 'symbol', 'country', 'industry']].reset_index(drop=True).rename(columns={
+                    'rank': 'Rank',
+                    'name': 'Name',
+                    'symbol': 'Symbol',
+                    'country': 'Country',
+                    'industry': 'Industry',
+                }),
+                width='stretch',
+                hide_index=True,
+                )
