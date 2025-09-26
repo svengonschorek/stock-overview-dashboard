@@ -62,7 +62,7 @@ def load_candlestick(symbol):
         },
             {
             "width": width,
-            "height": height * 0.15,
+            "height": height * 0.25,
             "layout": {
                 "background": {
                     "type": 'solid',
@@ -132,8 +132,8 @@ def load_candlestick(symbol):
             },
             "priceScale": {
                 "scaleMargins": {
-                    "top": 0,
-                    "bottom": 0,
+                    "top": 0.1,
+                    "bottom": 0.1,
                 },
                 "alignLabels": True
             }

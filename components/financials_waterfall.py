@@ -15,16 +15,16 @@ def load_waterfall(symbol):
     net_income = results_last_quarter.loc['Net Income']
     non_op_income = net_income - op_income + taxes_other
 
-    y_values = [
+    y_values = [v / 1_000_000 for v in [
         total_revenue,    # Revenue (absolute start)
         -cogs,            # COGS (deduction)
-        gross_profit,     # Gross Profit (intermediate total, will be calculated by plotly from previous steps)
+        gross_profit,     # Gross Profit (intermediate total)
         -op_expenses,     # Op Expenses (deduction)
         op_income,        # Op Income (intermediate total)
         non_op_income,    # Non-Op Income/Expenses (addition)
         -taxes_other,     # Taxes & Other (deduction)
         net_income        # Net Income (absolute end)
-    ]
+    ]]
 
     measures = [
         "absolute",   # Revenue
@@ -50,18 +50,18 @@ def load_waterfall(symbol):
 
     deltas = [
         0,
-        -cogs,
+        -cogs / 1_000_000,
         0,
-        -op_expenses,
+        -op_expenses / 1_000_000,
         0,
-        non_op_income,
-        -taxes_other,
+        non_op_income / 1_000_000,
+        -taxes_other / 1_000_000,
         0
     ] 
 
     fig = go.Figure(
         go.Waterfall(
-            name="Financial Overview",
+            name="Quarterly Financial Overview",
             orientation="v",
             measure=measures,
             x=labels,
@@ -69,8 +69,8 @@ def load_waterfall(symbol):
             customdata=deltas,
             hoverinfo="y+name",
             hovertemplate=(
-                f"%{{y:,.0f}} {data.info['financialCurrency']}<br>"
-                f"Delta: %{{customdata:,.0f}} {data.info['financialCurrency']}<extra></extra>"
+                f"%{{y:,.1f}}M {data.info['financialCurrency']}<br>"
+                f"Delta: %{{customdata:,.1f}}M {data.info['financialCurrency']}<extra></extra>"
             ),
             increasing={"marker":{"color": "#5ab18f"}},
             decreasing={"marker":{"color": "#ea5e77"}},
@@ -82,18 +82,16 @@ def load_waterfall(symbol):
     fig.update_yaxes(
         zeroline=True,
         zerolinewidth=2,
-        zerolinecolor="gray"
+        zerolinecolor="gray",
+        title_text=f"Amount ({data.info['financialCurrency']} Millions)"
     )
 
     fig.update_layout(
-        title_text=f"Revenue to Net Income Conversion [in {data.info['financialCurrency']}]",
+        title_text=f"Quarterly Revenue to Net Income Conversion [in {data.info['financialCurrency']} Millions]",
         showlegend=False,
         xaxis_title="",
-        yaxis_title="Amount (B)",
         margin=dict(l=50, r=50, t=80, b=50),
-        template="plotly_white", # Clean white background
+        template="plotly_white",
     )
-    
 
-    #st.plotly_chart(fig, use_container_width=True)
     return fig

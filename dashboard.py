@@ -43,4 +43,5 @@ with financial_tab:
         st.subheader("Metrics")
         display_financial_metrics(symbol)
     with col2:
+        st.subheader("Income Waterfall")
         st.plotly_chart(st.session_state.waterfall_chart, use_container_width=True)

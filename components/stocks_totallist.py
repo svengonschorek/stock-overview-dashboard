@@ -37,10 +37,15 @@ def stocks_list():
                 use_container_width=True,
                 hide_index=True,
                 column_config={
+                    "Rank": st.column_config.NumberColumn("Rank", width="10"),
+                    "Name": st.column_config.TextColumn("Name", width="30"),
+                    "Symbol": st.column_config.TextColumn("Symbol", width="5"),
+                    "Country": st.column_config.TextColumn("Country", width="30"),
+                    "Industry": st.column_config.TextColumn("Industry", width="50"),
                     "Symbol Link": st.column_config.LinkColumn(
                         label="",
                         display_text="→",
-                        width=10,
+                        width="5",
                     ),
                 },
                 disabled=["Symbol Link"],
