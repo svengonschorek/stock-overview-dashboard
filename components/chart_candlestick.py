@@ -1,6 +1,7 @@
 import json
 import numpy as np
 import yfinance as yf
+import streamlit as st
 
 from streamlit_lightweight_charts import renderLightweightCharts
 from st_screen_stats import ScreenData
@@ -30,16 +31,23 @@ def load_candlestick(symbol):
     candles = json.loads(df.to_json(orient = "records"))
     volume = json.loads(df.rename(columns={"volume": "value",}).to_json(orient = "records"))
 
+    if st.context.theme.type == "dark":
+        bg_color = "#0e1117"
+        text_color = "#EEE"
+    else:
+        bg_color = "#fff"
+        text_color = "#222"
+
     chartMultipaneOptions = [
         {
             "width": width,
             "height": height * 0.6,
             "layout": {
                 "background": {
-                    "type": "solid",
-                    "color": 'white'
+                    "type": 'solid',
+                    "color": bg_color
                 },
-                "textColor": "black"
+                "textColor": text_color
             },
             "grid": {
                 "vertLines": {
@@ -66,9 +74,9 @@ def load_candlestick(symbol):
             "layout": {
                 "background": {
                     "type": 'solid',
-                    "color": 'transparent'
+                    "color": bg_color
                 },
-                "textColor": 'black',
+                "textColor": text_color
             },
             "grid": {
                 "vertLines": {
@@ -88,9 +96,9 @@ def load_candlestick(symbol):
             "layout": {
                 "background": {
                     "type": 'solid',
-                    "color": 'transparent'
+                    "color": bg_color
                 },
-                "textColor": 'black',
+                "textColor": text_color
             },
             "grid": {
                 "vertLines": {
@@ -115,7 +123,7 @@ def load_candlestick(symbol):
                 "downColor": COLOR_BEAR,
                 "borderVisible": False,
                 "wickUpColor": COLOR_BULL,
-                "wickDownColor": COLOR_BEAR
+                "wickDownColor": COLOR_BEAR,
             }
         }
     ]
@@ -140,16 +148,22 @@ def load_candlestick(symbol):
         }
     ]
 
-    candlestick_chart = renderLightweightCharts([
-        {
-            "chart": chartMultipaneOptions[0],
-            "series": seriesCandlestickChart
-        },
-        {
-            "chart": chartMultipaneOptions[1],
-            "series": seriesVolumeChart
-        }
-    ], 'multipane')
+    theme_type = getattr(st.context.theme, "type", "light")
+    chart_key = f"candlestick_chart_{theme_type}"
+
+    candlestick_chart = renderLightweightCharts(
+        [
+            {
+                "chart": chartMultipaneOptions[0],
+                "series": seriesCandlestickChart
+            },
+            {
+                "chart": chartMultipaneOptions[1],
+                "series": seriesVolumeChart
+            }
+        ],
+        key=chart_key
+    )
 
     # Handle screen size changes
     def onScreenSizeChange(candlestick_chart):
