@@ -17,13 +17,6 @@ with open("styles.css") as f:
 def stocks_list_popup():
     stocks_list()
 
-# Popup buttons
-button_col1, button_col2, _ = st.columns([1, 1, 7])
-with button_col1:
-    st.button("Stocks List", on_click=stocks_list_popup)
-with button_col2:
-    st.button("Watchlist")
-
 # Sidebar with default symbol from query parameter
 query_symbol = None
 if hasattr(st, "query_params"):
@@ -32,6 +25,7 @@ if hasattr(st, "query_params"):
 default_symbol = query_symbol.upper() if query_symbol else "AAPL"
 
 symbol = st.sidebar.text_input("Symbol", default_symbol).upper()
+st.sidebar.button("Stocks", on_click=stocks_list_popup)
 sidebar_company_info(symbol)
 
 # Tabs

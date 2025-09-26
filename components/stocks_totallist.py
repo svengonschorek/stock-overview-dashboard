@@ -14,8 +14,11 @@ def stocks_list():
 
     sectors = stocks_df['sector'].unique()
     for sector in sectors:
+        # Filter stocks by sector
         sector_stocks = stocks_df[stocks_df['sector'] == sector]
+
         if not sector_stocks.empty:
+            # Display sector header
             st.header(sector)
             df = sector_stocks[['rank', 'name', 'symbol', 'country', 'industry']].reset_index(drop=True).rename(columns={
                 'rank': 'Rank',
@@ -24,8 +27,11 @@ def stocks_list():
                 'country': 'Country',
                 'industry': 'Industry',
             })
+
             # Create a column with the link URL
             df['Symbol Link'] = df['Symbol'].apply(lambda x: f"?symbol={x}")
+
+            # Display the data editor with clickable links
             st.data_editor(
                 df,
                 use_container_width=True,
