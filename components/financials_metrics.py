@@ -1,7 +1,7 @@
 import yfinance as yt
 import streamlit as st
 
-def display_financial_metrics(symbol):
+def financial_metrics(symbol):
     data = yt.Ticker(symbol).quarterly_financials
 
     results_last_quarter = data[data.columns.values[0]]

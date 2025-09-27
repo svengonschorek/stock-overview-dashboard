@@ -3,7 +3,8 @@ import streamlit as st
 from components.chart_candlestick import load_candlestick
 from components.main_sidebar import sidebar_company_info
 from components.financials_waterfall import load_waterfall
-from components.financials_metrics import display_financial_metrics
+from components.financials_metrics import financial_metrics
+from components.financials_statements import financials_statements
 from components.stocks_totallist import stocks_list
 
 st.set_page_config(layout="wide", page_title="Company Analysis Dashboard")
@@ -40,8 +41,11 @@ with financial_tab:
 
     col1, col2 = st.columns([1, 3])
     with col1:
-        st.subheader("Metrics")
-        display_financial_metrics(symbol)
+        st.header("Metrics")
+        financial_metrics(symbol)
     with col2:
-        st.subheader("Income Waterfall")
+        st.header("Income Waterfall")
         st.plotly_chart(st.session_state.waterfall_chart, use_container_width=True)
+    
+    st.header("Financial Statements")
+    financials_statements(symbol)
