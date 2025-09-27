@@ -87,7 +87,7 @@ def load_waterfall(symbol):
     )
 
     fig.update_layout(
-        title_text=f"Quarterly Revenue to Net Income Conversion [in {data.info['financialCurrency']} Millions]",
+        title_text=f"Quarterly Revenue to Net Income Conversion",
         showlegend=False,
         xaxis_title="",
         margin=dict(l=50, r=50, t=80, b=50),

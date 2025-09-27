@@ -18,10 +18,10 @@ def financials_statements(symbol):
 
     # Convert values to millions except for excluded rows
     def convert_to_millions_and_format(df):
-        df_million = df.copy().astype(object)  # Cast all columns to object dtype
+        df_million = df.copy().astype(object)
         for row in df_million.index:
             if row not in exclude_rows:
-                df_million.loc[row] = df_million.loc[row].apply(lambda x: f"${int(round(x / 1_000_000)):,}M" if pd.notnull(x) else "")
+                df_million.loc[row] = df_million.loc[row].apply(lambda x: f"{int(round(x / 1_000_000)):,}M" if pd.notnull(x) else "")
             else:
                 df_million.loc[row] = df_million.loc[row].apply(lambda x: f"{x:.2f}" if isinstance(x, float) else x)
         return df_million

@@ -14,19 +14,19 @@ def financial_metrics(symbol):
     ebit_million = results_last_quarter['EBIT'] / 1_000_000
 
     st.metric(
-        label="Total Revenue (Millions USD)",
+        label="Total Revenue",
         value=f"${revenue_million:,.1f}M",
         delta=f"{revenue_growth_yoy['Total Revenue']:.2%} YoY"
     )
 
     st.metric(
-        label="EBITDA (Millions USD)",
+        label="EBITDA",
         value=f"${ebitda_million:,.1f}M",
         delta=f"{revenue_growth_yoy['EBITDA']:.2%} YoY"
     )
 
     st.metric(
-        label="EBIT (Millions USD)",
+        label="EBIT",
         value=f"${ebit_million:,.1f}M",
         delta=f"{revenue_growth_yoy['EBIT']:.2%} YoY"
     )
